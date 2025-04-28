@@ -1,4 +1,9 @@
 {
+  "accountAssociation": {
+    "header": "eyJmaWQiOjc1NTA3NCwidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweDFBOUJDOGQ3ZGYxNzg3NzM0YmUyRDQ3MjFjNkM2Mjk0ODE4MDgwNDkifQ",
+    "payload": "eyJkb21haW4iOiJ6b3JhdGltZWxvY2sueHl6In0",
+    "signature": "MHhkMDVhMzEwYmRlZjc5ZjYxMTczY2IxNDM1YWM5MTc5MjBjYzIyYmFmNmMyNGZkMzYwYTA1YTViZmRkZWZiM2IwMWU1MGVkYWZjZGY1ZTJhMDYyZTE0MWM1YzQwZGZiY2YxOTNlZWIwZjk5MTBkZTMwNGVjYjEyNjk0ZjBhYjI4MTFi"
+  },
   "frame": {
     "version": "1",
     "name": "ZoraTimeLock",
