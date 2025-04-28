@@ -22,16 +22,10 @@ export const metadata: Metadata = {
     ],
   },
   other: {
-    "fc:frame": JSON.stringify({
-      version: "1",
-      name: "ZoraTimeLock",
-      iconUrl: "https://zoratimelock.xyz/logo.png",
-      homeUrl: "https://zoratimelock.xyz",
-      imageUrl: "https://zoratimelock.xyz/og-image.png",
-      buttonTitle: "🚀 Start",
-      splashImageUrl: "https://zoratimelock.xyz/logo.png",
-      splashBackgroundColor: "#000000",
-    }),
+    "fc:frame": "vNext",
+    "fc:frame:image": "https://zoratimelock.xyz/og-image.png",
+    "fc:frame:button:1": "🚀 Start",
+    "fc:frame:post_url": "https://zoratimelock.xyz/api/frame",
   },
 };
 
