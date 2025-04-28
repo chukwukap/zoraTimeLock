@@ -1,36 +1,137 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ZoraTimeLock
+
+A revolutionary platform that enables creators to monetize their future content through time-locked tokens. Built on Zora protocol and Ethereum blockchain.
+
+## Features
+
+- 🎨 Creator Portal for content management
+- 💰 Token-based content monetization
+- ⏱️ Time-lock mechanism for future content
+- 🔄 Trading platform for content tokens
+- 📊 Analytics and insights dashboard
+- 👥 Community engagement tools
+
+## Tech Stack
+
+- **Frontend**: Next.js 14 with TypeScript
+- **Smart Contracts**: Solidity
+- **Blockchain**: Ethereum (Zora integration)
+- **Database**: PostgreSQL
+- **Authentication**: Web3 wallet integration
+- **Styling**: Tailwind CSS
+- **Package Manager**: pnpm
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18.x or later
+- pnpm
+- MetaMask or other Web3 wallet
+- Git
+
+### Installation
+
+1. Clone the repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yourusername/zoraTimeLock.git
+cd zoraTimeLock
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Set up environment variables:
 
-## Learn More
+```bash
+cp .env.example .env.local
+# Edit .env.local with your configuration
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. Run the development server:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+pnpm dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-## Deploy on Vercel
+## Development
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Project Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+zoraTimeLock/
+├── app/                 # Next.js app directory
+├── components/          # React components
+├── contracts/           # Smart contracts
+├── lib/                 # Utility functions
+├── public/             # Static assets
+└── styles/             # Global styles
+```
+
+### Smart Contracts
+
+The smart contracts are located in the `contracts/` directory. Key contracts include:
+
+- `TimeLockToken.sol`: Main token contract
+- `ContentManager.sol`: Content management contract
+- `TradingPool.sol`: Trading functionality
+
+### Testing
+
+Run the test suite:
+
+```bash
+pnpm test
+```
+
+### Deployment
+
+1. Build the application:
+
+```bash
+pnpm build
+```
+
+2. Deploy smart contracts:
+
+```bash
+pnpm deploy:contracts
+```
+
+3. Deploy frontend:
+
+```bash
+pnpm deploy:frontend
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## Security
+
+- All smart contracts are audited
+- Regular security updates
+- Bug bounty program available
+- Report security issues to security@zoratimelock.com
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Support
+
+- Documentation: [docs.zoratimelock.com](https://docs.zoratimelock.com)
+- Discord: [discord.gg/zoratimelock](https://discord.gg/zoratimelock)
+- Twitter: [@ZoraTimeLock](https://twitter.com/ZoraTimeLock)
+- Email: support@zoratimelock.com
