@@ -1,15 +1,17 @@
 # ZoraTimeLock
 
-A revolutionary platform that enables creators to monetize their future content through time-locked tokens. Built on Zora protocol and Ethereum blockchain.
+A Farcaster frame/mini app that enables creators to monetize their future content through time-locked tokens. Built on Zora protocol, Ethereum blockchain, and integrated with Farcaster.
 
 ## Features
 
-- 🎨 Creator Portal for content management
-- 💰 Token-based content monetization
-- ⏱️ Time-lock mechanism for future content
-- 🔄 Trading platform for content tokens
-- 📊 Analytics and insights dashboard
-- 👥 Community engagement tools
+- Creator Portal for content management
+- Token-based content monetization
+- Time-lock mechanism for future content
+- Trading platform for content tokens
+- Analytics and insights dashboard
+- Community engagement tools
+- Farcaster frame integration
+- Seamless Farcaster social experience
 
 ## Tech Stack
 
@@ -20,6 +22,8 @@ A revolutionary platform that enables creators to monetize their future content 
 - **Authentication**: Web3 wallet integration
 - **Styling**: Tailwind CSS
 - **Package Manager**: pnpm
+- **Frame Protocol**: Farcaster Frame API
+- **Social Integration**: Farcaster API
 
 ## Getting Started
 
@@ -28,6 +32,7 @@ A revolutionary platform that enables creators to monetize their future content 
 - Node.js 18.x or later
 - pnpm
 - MetaMask or other Web3 wallet
+- Farcaster account
 - Git
 
 ### Installation
@@ -67,6 +72,8 @@ pnpm dev
 ```
 zoraTimeLock/
 ├── app/                 # Next.js app directory
+│   ├── api/            # API routes including frame endpoints
+│   └── frame/          # Farcaster frame components
 ├── components/          # React components
 ├── contracts/           # Smart contracts
 ├── lib/                 # Utility functions
@@ -81,6 +88,15 @@ The smart contracts are located in the `contracts/` directory. Key contracts inc
 - `TimeLockToken.sol`: Main token contract
 - `ContentManager.sol`: Content management contract
 - `TradingPool.sol`: Trading functionality
+
+### Farcaster Integration
+
+The application integrates with Farcaster through:
+
+- Frame API endpoints for interactive content
+- Social graph integration for community features
+- Cast embedding for content sharing
+- Frame actions for token interactions
 
 ### Testing
 
@@ -110,6 +126,12 @@ pnpm deploy:contracts
 pnpm deploy:frontend
 ```
 
+4. Deploy Farcaster frame:
+
+```bash
+pnpm deploy:frame
+```
+
 ## Contributing
 
 1. Fork the repository
@@ -124,6 +146,7 @@ pnpm deploy:frontend
 - Regular security updates
 - Bug bounty program available
 - Report security issues to security@zoratimelock.com
+- Frame security best practices implemented
 
 ## License
 
@@ -134,4 +157,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Documentation: [docs.zoratimelock.com](https://docs.zoratimelock.com)
 - Discord: [discord.gg/zoratimelock](https://discord.gg/zoratimelock)
 - Twitter: [@ZoraTimeLock](https://twitter.com/ZoraTimeLock)
+- Farcaster: [@zoratimelock](https://warpcast.com/zoratimelock)
 - Email: support@zoratimelock.com
