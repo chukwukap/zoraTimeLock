@@ -1,6 +1,6 @@
 # ZoraTimeLock
 
-A Farcaster frame/mini app that enables creators to monetize their future content through time-locked tokens. Built on Zora protocol, Ethereum blockchain, and integrated with Farcaster.
+Monetize your future content, today. A Farcaster frame that enables creators to tokenize and monetize upcoming content through time-locked tokens.
 
 ## Features
 
@@ -12,6 +12,21 @@ A Farcaster frame/mini app that enables creators to monetize their future conten
 - Community engagement tools
 - Farcaster frame integration
 - Seamless Farcaster social experience
+
+## Branding
+
+### Colors
+
+- Primary: #3B82F6 (Blue)
+- Secondary: #1E293B (Dark Blue)
+- Accent: #10B981 (Green)
+- Background: #F8FAFC (Light Gray)
+- Text: #0F172A (Dark Gray)
+
+### Typography
+
+- Primary Font: Geist Sans
+- Secondary Font: Geist Mono
 
 ## Tech Stack
 
