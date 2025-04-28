@@ -176,9 +176,9 @@ export default function Home() {
       {/* Creative Footer */}
       <footer className="absolute bottom-0 w-full py-8 text-center">
         <div className="max-w-2xl mx-auto">
-          <p className="text-gray-500 text-sm tracking-wider font-light font-space-grotesk transform hover:translate-y-1 transition-transform duration-300">
+          {/* <p className="text-gray-500 text-sm tracking-wider font-light font-space-grotesk transform hover:translate-y-1 transition-transform duration-300">
             © 2024 ZoraTimeLock. All rights reserved.
-          </p>
+          </p> */}
           <div className="mt-4 flex justify-center space-x-4">
             <span className="text-gray-600 text-xs tracking-widest font-space-grotesk">
               INNOVATION
