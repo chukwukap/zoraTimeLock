@@ -2,6 +2,8 @@
 import { useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
+import FrameHandler from "@/components/FrameHandler";
+import { sdk } from "@farcaster/frame-sdk";
 
 function Particle({
   position,
@@ -93,8 +95,24 @@ function BackgroundEffect() {
 }
 
 export default function Home() {
+  // const [isFrameReady, setIsFrameReady] = useState(false);
+
+  const handleStartCreating = async () => {
+    try {
+      // Compose a cast when user clicks the button
+      await sdk.actions.composeCast({
+        text: "I'm exploring ZoraTimeLock - a platform to tokenize and monetize future content! 🚀",
+        embeds: ["https://zoratimelock.xyz"],
+      });
+    } catch (error) {
+      console.error("Error composing cast:", error);
+    }
+  };
+
   return (
     <main className="h-screen bg-black text-white overflow-hidden">
+      <FrameHandler />
+
       {/* Background Canvas */}
       <div className="absolute inset-0">
         <Canvas camera={{ position: [0, 0, 10], fov: 75 }}>
@@ -143,13 +161,13 @@ export default function Home() {
                   <span className="inline-block transform hover:rotate-3 transition-transform duration-300">
                     dates.
                   </span>{" "}
-                  <span className="inline-block transform hover:rotate-3 transition-transform duration-300">
+                  <span className="inline-block transform hover:-rotate-3 transition-transform duration-300">
                     Start
                   </span>{" "}
                   <span className="inline-block transform hover:rotate-3 transition-transform duration-300">
                     earning
                   </span>{" "}
-                  <span className="inline-block transform hover:rotate-3 transition-transform duration-300">
+                  <span className="inline-block transform hover:-rotate-3 transition-transform duration-300">
                     before
                   </span>{" "}
                   <span className="inline-block transform hover:rotate-3 transition-transform duration-300">
@@ -164,7 +182,7 @@ export default function Home() {
           <div className="mt-16 relative">
             <div className="absolute -inset-1 bg-gradient-to-r from-gray-600 to-gray-500 rounded-full blur opacity-25"></div>
             <button
-              disabled
+              onClick={handleStartCreating}
               className="relative px-12 py-6 bg-gray-400 text-gray-600 rounded-full text-xl font-medium cursor-not-allowed font-space-grotesk"
             >
               Coming Soon

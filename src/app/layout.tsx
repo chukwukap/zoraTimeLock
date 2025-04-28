@@ -8,6 +8,35 @@ export const metadata: Metadata = {
   title: "ZoraTimeLock",
   description:
     "Tokenize your upcoming content. Set release dates. Start earning before creation.",
+  openGraph: {
+    title: "ZoraTimeLock",
+    description:
+      "Tokenize your upcoming content. Set release dates. Start earning before creation.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "ZoraTimeLock",
+      },
+    ],
+  },
+  other: {
+    "fc:frame": JSON.stringify({
+      version: "next",
+      imageUrl: "/og-image.png",
+      button: {
+        title: "🚀 Start",
+        action: {
+          type: "launch_frame",
+          name: "ZoraTimeLock",
+          url: "https://zoratimelock.xyz",
+          splashImageUrl: "/logo.png",
+          splashBackgroundColor: "#000000",
+        },
+      },
+    }),
+  },
 };
 
 export default function RootLayout({
