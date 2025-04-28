@@ -1,0 +1,26 @@
+{
+  "frame": {
+    "version": "1",
+    "name": "ZoraTimeLock",
+    "iconUrl": "https://zoratimelock.xyz/logo.png",
+    "homeUrl": "https://zoratimelock.xyz",
+    "imageUrl": "https://zoratimelock.xyz/og-image.png",
+    "buttonTitle": "🚀 Start",
+    "splashImageUrl": "https://zoratimelock.xyz/logo.png",
+    "splashBackgroundColor": "#000000",
+    "subtitle": "Tokenize your future content",
+    "description": "A platform for creators to tokenize and monetize their upcoming content through time-locked tokens.",
+    "screenshotUrls": [
+      "https://zoratimelock.xyz/screenshots/1.png",
+      "https://zoratimelock.xyz/screenshots/2.png",
+      "https://zoratimelock.xyz/screenshots/3.png"
+    ],
+    "primaryCategory": "art-creativity",
+    "tags": ["nft", "creators", "content", "tokenization", "web3"],
+    "heroImageUrl": "https://zoratimelock.xyz/hero.png",
+    "tagline": "Future content, present value",
+    "ogTitle": "ZoraTimeLock",
+    "ogDescription": "Tokenize your upcoming content. Set release dates. Start earning before creation.",
+    "ogImageUrl": "https://zoratimelock.xyz/og-image.png"
+  }
+}

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
       "Tokenize your upcoming content. Set release dates. Start earning before creation.",
     images: [
       {
-        url: "/og-image.png",
+        url: "https://zoratimelock.xyz/og-image.png",
         width: 1200,
         height: 630,
         alt: "ZoraTimeLock",
@@ -23,18 +23,14 @@ export const metadata: Metadata = {
   },
   other: {
     "fc:frame": JSON.stringify({
-      version: "next",
-      imageUrl: "/og-image.png",
-      button: {
-        title: "🚀 Start",
-        action: {
-          type: "launch_frame",
-          name: "ZoraTimeLock",
-          url: "https://zoratimelock.xyz",
-          splashImageUrl: "/logo.png",
-          splashBackgroundColor: "#000000",
-        },
-      },
+      version: "1",
+      name: "ZoraTimeLock",
+      iconUrl: "https://zoratimelock.xyz/logo.png",
+      homeUrl: "https://zoratimelock.xyz",
+      imageUrl: "https://zoratimelock.xyz/og-image.png",
+      buttonTitle: "🚀 Start",
+      splashImageUrl: "https://zoratimelock.xyz/logo.png",
+      splashBackgroundColor: "#000000",
     }),
   },
 };
