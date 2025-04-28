@@ -1,140 +1,135 @@
 "use client";
 import { useRef, useState, useEffect } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { OrbitControls, Text, useTexture } from "@react-three/drei";
+import { Canvas, useFrame, ThreeEvent } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 
-// Time capsule shape that represents locked content
-function TimeCapsule({ isHovered }: { isHovered: boolean }) {
-  const meshRef = useRef<THREE.Mesh>(null);
+// Interactive lock mechanism
+function LockMechanism({
+  isUnlocked,
+  onUnlock,
+}: {
+  isUnlocked: boolean;
+  onUnlock: () => void;
+}) {
+  const groupRef = useRef<THREE.Group>(null);
   const [hovered, setHovered] = useState(false);
-  const [clicked, setClicked] = useState(false);
+  const [rotation, setRotation] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
 
-  // Create a custom shader material for the time capsule
-  const materialRef = useRef<THREE.ShaderMaterial>(null);
-
-  useFrame((state, delta) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.y += delta * 0.5;
-      if (materialRef.current) {
-        materialRef.current.uniforms.time.value += delta;
-      }
+  useFrame(() => {
+    if (groupRef.current && !isUnlocked) {
+      groupRef.current.rotation.y += 0.005;
     }
   });
 
+  const handlePointerDown = () => {
+    setIsDragging(true);
+  };
+
+  const handlePointerUp = () => {
+    setIsDragging(false);
+    if (rotation > 2 * Math.PI) {
+      onUnlock();
+    }
+  };
+
+  const handlePointerMove = (e: ThreeEvent<PointerEvent>) => {
+    if (isDragging && !isUnlocked) {
+      setRotation((prev) => prev + e.movementX * 0.01);
+    }
+  };
+
   return (
-    <group>
+    <group ref={groupRef} position={[0, 0, 0]}>
+      {/* Lock body */}
       <mesh
-        ref={meshRef}
         onPointerOver={() => setHovered(true)}
         onPointerOut={() => setHovered(false)}
-        onClick={() => setClicked(!clicked)}
-        scale={hovered || isHovered ? 1.1 : 1}
+        onPointerDown={handlePointerDown}
+        onPointerUp={handlePointerUp}
+        onPointerMove={handlePointerMove}
       >
-        <torusKnotGeometry args={[1, 0.3, 100, 16]} />
-        <shaderMaterial
-          ref={materialRef}
-          uniforms={{
-            time: { value: 0 },
-            color1: { value: new THREE.Color("#3B82F6") },
-            color2: { value: new THREE.Color("#10B981") },
-            hovered: { value: hovered || isHovered ? 1 : 0 },
-          }}
-          vertexShader={`
-            varying vec2 vUv;
-            void main() {
-              vUv = uv;
-              gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-            }
-          `}
-          fragmentShader={`
-            uniform float time;
-            uniform vec3 color1;
-            uniform vec3 color2;
-            uniform float hovered;
-            varying vec2 vUv;
-            
-            void main() {
-              float pulse = sin(time * 2.0) * 0.5 + 0.5;
-              vec3 color = mix(color1, color2, pulse);
-              float glow = hovered * 0.3;
-              gl_FragColor = vec4(color + glow, 1.0);
-            }
-          `}
+        <cylinderGeometry args={[1, 1, 0.5, 32]} />
+        <meshStandardMaterial
+          color={hovered ? "#4f46e5" : "#ffffff"}
+          metalness={0.8}
+          roughness={0.2}
         />
       </mesh>
-      <Text
-        position={[0, -2, 0]}
-        fontSize={0.5}
-        color="#ffffff"
-        anchorX="center"
-        anchorY="middle"
-      >
-        {clicked ? "Content Unlocked!" : "Time-Locked Content"}
-      </Text>
+
+      {/* Lock shackle */}
+      <mesh position={[0, 0.5, 0]}>
+        <torusGeometry args={[0.8, 0.1, 16, 32]} />
+        <meshStandardMaterial
+          color={isUnlocked ? "#10b981" : "#ffffff"}
+          metalness={0.8}
+          roughness={0.2}
+        />
+      </mesh>
+
+      {/* Time particles */}
+      {!isUnlocked && (
+        <group>
+          {Array.from({ length: 20 }).map((_, i) => (
+            <mesh key={i} position={[Math.sin(i) * 2, Math.cos(i) * 2, 0]}>
+              <sphereGeometry args={[0.05, 16, 16]} />
+              <meshBasicMaterial color="#ffffff" transparent opacity={0.5} />
+            </mesh>
+          ))}
+        </group>
+      )}
     </group>
   );
 }
 
-// Floating particles representing time
-function TimeParticles() {
-  const particlesRef = useRef<THREE.Points>(null);
-  const count = 200;
+// Content capsule that appears when unlocked
+function ContentCapsule({ isVisible }: { isVisible: boolean }) {
+  const meshRef = useRef<THREE.Mesh>(null);
 
-  const positions = new Float32Array(count * 3);
-  const colors = new Float32Array(count * 3);
-
-  for (let i = 0; i < count; i++) {
-    positions[i * 3] = (Math.random() - 0.5) * 10;
-    positions[i * 3 + 1] = (Math.random() - 0.5) * 10;
-    positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
-
-    colors[i * 3] = Math.random();
-    colors[i * 3 + 1] = Math.random();
-    colors[i * 3 + 2] = Math.random();
-  }
-
-  useFrame((state) => {
-    if (particlesRef.current) {
-      particlesRef.current.rotation.y += 0.001;
+  useFrame(() => {
+    if (meshRef.current && isVisible) {
+      meshRef.current.rotation.y += 0.01;
     }
   });
 
+  if (!isVisible) return null;
+
   return (
-    <points ref={particlesRef}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={count}
-          array={positions}
-          itemSize={3}
-        />
-        <bufferAttribute
-          attach="attributes-color"
-          count={count}
-          array={colors}
-          itemSize={3}
-        />
-      </bufferGeometry>
-      <pointsMaterial size={0.1} vertexColors transparent opacity={0.6} />
-    </points>
+    <mesh ref={meshRef} position={[0, 0, 0]}>
+      <dodecahedronGeometry args={[1, 0]} />
+      <meshStandardMaterial
+        color="#10b981"
+        metalness={0.8}
+        roughness={0.2}
+        emissive="#10b981"
+        emissiveIntensity={0.5}
+      />
+    </mesh>
   );
 }
 
 export default function TimeLockAnimation() {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [showInstructions, setShowInstructions] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowInstructions(false);
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <div
-      className="h-[500px] w-full cursor-pointer"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <div className="h-[500px] w-full relative">
       <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} />
-        <TimeCapsule isHovered={isHovered} />
-        <TimeParticles />
+        <LockMechanism
+          isUnlocked={isUnlocked}
+          onUnlock={() => setIsUnlocked(true)}
+        />
+        <ContentCapsule isVisible={isUnlocked} />
         <OrbitControls
           enableZoom={false}
           enablePan={false}
@@ -142,6 +137,11 @@ export default function TimeLockAnimation() {
           maxPolarAngle={Math.PI / 3}
         />
       </Canvas>
+      {showInstructions && (
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-center">
+          <p className="text-sm">Drag to unlock your content</p>
+        </div>
+      )}
     </div>
   );
 }
